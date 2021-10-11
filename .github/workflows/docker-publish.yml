@@ -2,14 +2,13 @@ name: Publish Docker image
 on:
   push:
     branches: [main]
-    
+
 jobs:
   push_to_registries:
     name: Push Docker image to multiple registries
     runs-on: ubuntu-latest
     steps:
-    
-      - name: Check Out Repo 
+      - name: Check Out Repo
         uses: actions/checkout@v2
 
       - name: Login to Docker Hub
@@ -29,8 +28,7 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USER }}/test:latest
+          tags: ${{ secrets.DOCKER_USER }}/karma-root-app:latest
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
-

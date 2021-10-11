@@ -1,0 +1,18 @@
+version: '3.9'
+
+# Define the services/containers to be run
+services:
+  karma-angular-root:
+    container_name: karma_angular-app
+    image: karma-angular-root
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8181:80
+
+networks:
+  default:
+    # use the default network of the karma container
+    external: true
+    name: karma_docker_api_default
