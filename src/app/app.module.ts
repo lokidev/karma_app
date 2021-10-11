@@ -12,10 +12,12 @@ import { NavBarModule } from './components/nav-bar/nav-bar.module';
 import { ReadMeModule } from './components/read-me/read-me.module';
 import { TerminalCommandModule } from './components/read-me/terminal-command/terminal-command.module';
 import { MyStoreModule } from './components/store/store.module';
+import { KarmaComponent } from './components/karma/karma.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    KarmaComponent
   ],
   imports: [
     BrowserModule,
