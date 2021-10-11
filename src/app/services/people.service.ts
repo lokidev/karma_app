@@ -13,18 +13,18 @@ export class PeopleService {
   }
 
   getAllEverCount() {
-    return this.httpClient.get<number>('https://localhost:5052/api/People/allEverCount');
+    return this.httpClient.get<number>('http://localhost:5052/api/People/allEverCount');
   }
 
   getAliveCount() {
-    return this.httpClient.get<number>('https://localhost:5052/api/People/aliveCount');
+    return this.httpClient.get<number>('http://localhost:5052/api/People/aliveCount');
   }
 
   getDeathCount() {
-    return this.httpClient.get<number>('https://localhost:5052/api/People/deathCount');
+    return this.httpClient.get<number>('http://localhost:5052/api/People/deathCount');
   }
 
   getMateCount() {
-    return this.httpClient.get<number>('https://localhost:5052/api/People/mateCount');
+    return this.httpClient.get<number>('http://localhost:5052/api/People/mateCount');
   }
 }
