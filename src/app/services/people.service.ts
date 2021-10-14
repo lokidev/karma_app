@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,27 +9,27 @@ export class PeopleService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getPeople() {
+  getPeople(): Observable<Array<any>> {
     return this.httpClient.get<Array<any>>('http://localhost:5052/api/People');
   }
 
-  getSeedPeople(seeds: number){
+  getSeedPeople(seeds: number): Observable<Array<any>> {
     return this.httpClient.get<Array<any>>('http://localhost:5002/api/People/Seed?amount=' + seeds.toString());
   }
 
-  getAllEverCount() {
+  getAllEverCount(): Observable<number> {
     return this.httpClient.get<number>('http://localhost:5052/api/People/allEverCount');
   }
 
-  getAliveCount() {
+  getAliveCount(): Observable<number> {
     return this.httpClient.get<number>('http://localhost:5052/api/People/aliveCount');
   }
 
-  getDeathCount() {
+  getDeathCount(): Observable<number> {
     return this.httpClient.get<number>('http://localhost:5052/api/People/deathCount');
   }
 
-  getMateCount() {
+  getMateCount(): Observable<number> {
     return this.httpClient.get<number>('http://localhost:5052/api/People/mateCount');
   }
 }
