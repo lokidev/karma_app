@@ -47,11 +47,11 @@ export class KarmaComponent implements OnInit {
   }
 
   startClock(): void {
-    this.worldService.getStartClock();
+    this.worldService.getStartClock().subscribe();
   }
 
   stopClock(): void {
-    this.worldService.getStopClock();
+    this.worldService.getStopClock().subscribe();
   }
 
 }

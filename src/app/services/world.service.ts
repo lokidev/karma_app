@@ -17,10 +17,10 @@ export class WorldService {
   }
 
   getStartClock() {
-    return this.httpClient.get<void>('http://localhost:5053/api/World/startClock');
+    return this.httpClient.get<Date>('http://localhost:5053/api/World/startClock');
   }
 
   getStopClock() {
-    return this.httpClient.get<void>('http://localhost:5053/api/World/stopClock');
+    return this.httpClient.get<Date>('http://localhost:5053/api/World/stopClock');
   }
 }
