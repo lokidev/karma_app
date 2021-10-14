@@ -14,7 +14,8 @@ export class PeopleService {
   }
 
   getSeedPeople(seeds: number): Observable<Array<any>> {
-    return this.httpClient.get<Array<any>>('http://localhost:5002/api/People/Seed?amount=' + seeds.toString());
+    console.log('Api');
+    return this.httpClient.get<Array<any>>('http://localhost:5052/api/People/Seed?amount=' + seeds.toString());
   }
 
   getAllEverCount(): Observable<number> {

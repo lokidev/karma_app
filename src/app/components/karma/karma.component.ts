@@ -54,8 +54,9 @@ export class KarmaComponent implements OnInit {
     this.worldService.getStopClock().subscribe();
   }
 
-  seedPeople(ammount: number): any[]{
-    this.peopleService.getSeedPeople(ammount).subscribe(x => {
+  seedPeople(amount: number): any[] {
+    console.log('Hit');
+    this.peopleService.getSeedPeople(amount).subscribe(x => {
       return x;
     });
     return [];
