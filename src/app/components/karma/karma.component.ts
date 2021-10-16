@@ -47,6 +47,13 @@ export class KarmaComponent implements OnInit, OnDestroy {
   deathCount$: Observable<number>;
   mateCount$: Observable<number>;
   ZeroToTwentyCount$: Observable<number> = new Observable<number>();
+  TwentyToThirtyCount$: Observable<number> = new Observable<number>();
+  ThirtyToFortyCount$: Observable<number> = new Observable<number>();
+  FortyToFiftyCount$: Observable<number> = new Observable<number>();
+  FiftyToSixtyCount$: Observable<number> = new Observable<number>();
+  SixtyToSeventyCount$: Observable<number> = new Observable<number>();
+  SeventyToEightyCount$: Observable<number> = new Observable<number>();
+  EightyToNinetyCount$: Observable<number> = new Observable<number>();
   worldPeopleCount$: Observable<number>;
   currentDate$: Observable<Date>;
 
@@ -63,13 +70,46 @@ export class KarmaComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.currentDate$.pipe(take(1)).subscribe(x => {
-      console.log(x);
       const ageRangeRequest = new AgeRangeRequest();
       ageRangeRequest.currentDate = x;
       ageRangeRequest.minAge = 0;
       ageRangeRequest.maxAge = 20;
-
       this.ZeroToTwentyCount$ = this.peopleService.getAgeRangeCount(ageRangeRequest).pipe(take(1));
+
+      ageRangeRequest.currentDate = x;
+      ageRangeRequest.minAge = 20;
+      ageRangeRequest.maxAge = 30;
+      this.TwentyToThirtyCount$ = this.peopleService.getAgeRangeCount(ageRangeRequest).pipe(take(1));
+
+      ageRangeRequest.currentDate = x;
+      ageRangeRequest.minAge = 30;
+      ageRangeRequest.maxAge = 40;
+      this.ThirtyToFortyCount$ = this.peopleService.getAgeRangeCount(ageRangeRequest).pipe(take(1));
+
+      ageRangeRequest.currentDate = x;
+      ageRangeRequest.minAge = 40;
+      ageRangeRequest.maxAge = 50;
+      this.FortyToFiftyCount$ = this.peopleService.getAgeRangeCount(ageRangeRequest).pipe(take(1));
+
+      ageRangeRequest.currentDate = x;
+      ageRangeRequest.minAge = 50;
+      ageRangeRequest.maxAge = 60;
+      this.FiftyToSixtyCount$ = this.peopleService.getAgeRangeCount(ageRangeRequest).pipe(take(1));
+
+      ageRangeRequest.currentDate = x;
+      ageRangeRequest.minAge = 60;
+      ageRangeRequest.maxAge = 70;
+      this.SixtyToSeventyCount$ = this.peopleService.getAgeRangeCount(ageRangeRequest).pipe(take(1));
+
+      ageRangeRequest.currentDate = x;
+      ageRangeRequest.minAge = 70;
+      ageRangeRequest.maxAge = 80;
+      this.SeventyToEightyCount$ = this.peopleService.getAgeRangeCount(ageRangeRequest).pipe(take(1));
+
+      ageRangeRequest.currentDate = x;
+      ageRangeRequest.minAge = 80;
+      ageRangeRequest.maxAge = 90;
+      this.EightyToNinetyCount$ = this.peopleService.getAgeRangeCount(ageRangeRequest).pipe(take(1));
     });
   }
 
@@ -87,13 +127,46 @@ export class KarmaComponent implements OnInit, OnDestroy {
     this.currentDate$ = this.worldService.getCurrentDate().pipe(take(1));
 
     this.currentDate$.pipe(take(1)).subscribe(x => {
-      console.log(x);
       const ageRangeRequest = new AgeRangeRequest();
       ageRangeRequest.currentDate = x;
       ageRangeRequest.minAge = 0;
       ageRangeRequest.maxAge = 20;
-
       this.ZeroToTwentyCount$ = this.peopleService.getAgeRangeCount(ageRangeRequest).pipe(take(1));
+
+      ageRangeRequest.currentDate = x;
+      ageRangeRequest.minAge = 20;
+      ageRangeRequest.maxAge = 30;
+      this.TwentyToThirtyCount$ = this.peopleService.getAgeRangeCount(ageRangeRequest).pipe(take(1));
+
+      ageRangeRequest.currentDate = x;
+      ageRangeRequest.minAge = 30;
+      ageRangeRequest.maxAge = 40;
+      this.ThirtyToFortyCount$ = this.peopleService.getAgeRangeCount(ageRangeRequest).pipe(take(1));
+
+      ageRangeRequest.currentDate = x;
+      ageRangeRequest.minAge = 40;
+      ageRangeRequest.maxAge = 50;
+      this.FortyToFiftyCount$ = this.peopleService.getAgeRangeCount(ageRangeRequest).pipe(take(1));
+
+      ageRangeRequest.currentDate = x;
+      ageRangeRequest.minAge = 50;
+      ageRangeRequest.maxAge = 60;
+      this.FiftyToSixtyCount$ = this.peopleService.getAgeRangeCount(ageRangeRequest).pipe(take(1));
+
+      ageRangeRequest.currentDate = x;
+      ageRangeRequest.minAge = 60;
+      ageRangeRequest.maxAge = 70;
+      this.SixtyToSeventyCount$ = this.peopleService.getAgeRangeCount(ageRangeRequest).pipe(take(1));
+
+      ageRangeRequest.currentDate = x;
+      ageRangeRequest.minAge = 70;
+      ageRangeRequest.maxAge = 80;
+      this.SeventyToEightyCount$ = this.peopleService.getAgeRangeCount(ageRangeRequest).pipe(take(1));
+
+      ageRangeRequest.currentDate = x;
+      ageRangeRequest.minAge = 80;
+      ageRangeRequest.maxAge = 90;
+      this.EightyToNinetyCount$ = this.peopleService.getAgeRangeCount(ageRangeRequest).pipe(take(1));
     });
 
     if (this.allowPoling) {
