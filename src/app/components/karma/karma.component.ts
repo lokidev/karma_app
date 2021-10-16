@@ -3,6 +3,7 @@ import { PeopleService } from 'src/app/services/people.service';
 import { Observable, Subject } from 'rxjs';
 import { WorldService } from 'src/app/services/world.service';
 
+
 @Component({
   selector: 'app-karma',
   templateUrl: './karma.component.html',
