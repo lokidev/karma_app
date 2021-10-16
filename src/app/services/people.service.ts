@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AgeRangeRequest } from '../Models/Request/age-range-request';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +33,9 @@ export class PeopleService {
 
   getMateCount(): Observable<number> {
     return this.httpClient.get<number>('http://localhost:5052/api/People/mateCount');
+  }
+
+  getAgeRangeCount(body: AgeRangeRequest): Observable<number> {
+    return this.httpClient.post<number>('http://localhost:5052/api/People/ageRangeCount', body);
   }
 }

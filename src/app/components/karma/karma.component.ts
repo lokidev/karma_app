@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PeopleService } from 'src/app/services/people.service';
 import { Observable, Subject } from 'rxjs';
 import { WorldService } from 'src/app/services/world.service';
+import { AgeRangeRequest } from 'src/app/Models/Request/age-range-request';
 
 @Component({
   selector: 'app-karma',
@@ -44,6 +45,7 @@ export class KarmaComponent implements OnInit {
   aliveCount$: Observable<number>;
   deathCount$: Observable<number>;
   mateCount$: Observable<number>;
+  ZeroToTwentyCount$: Observable<number> = new Observable<number>();
   worldPeopleCount$: Observable<number>;
   currentDate$: Observable<Date>;
 
@@ -59,6 +61,14 @@ export class KarmaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.currentDate$.subscribe(x => {
+      const request = new AgeRangeRequest();
+      request.currentDate = x;
+      request.minAge = 0;
+      request.maxAge = 18;
+
+      this.ZeroToTwentyCount$ = this.peopleService.getAgeRangeCount(request).pipe();
+    });
 
   }
 
