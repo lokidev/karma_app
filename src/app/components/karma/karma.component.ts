@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PeopleService } from 'src/app/services/people.service';
 import { Observable, Subject } from 'rxjs';
+import { take, takeUntil } from 'rxjs/operators';
 import { WorldService } from 'src/app/services/world.service';
 import { AgeRangeRequest } from 'src/app/Models/Request/age-range-request';
 
@@ -9,7 +10,7 @@ import { AgeRangeRequest } from 'src/app/Models/Request/age-range-request';
   templateUrl: './karma.component.html',
   styleUrls: ['./karma.component.scss']
 })
-export class KarmaComponent implements OnInit {
+export class KarmaComponent implements OnInit, OnDestroy {
 
   data = [
     {
@@ -52,34 +53,49 @@ export class KarmaComponent implements OnInit {
   constructor(
     private peopleService: PeopleService,
     private worldService: WorldService) {
-    this.allEverCount$ = peopleService.getAllEverCount().pipe();
-    this.aliveCount$ = peopleService.getAliveCount().pipe();
-    this.deathCount$ = peopleService.getDeathCount().pipe();
-    this.mateCount$ = peopleService.getMateCount().pipe();
-    this.worldPeopleCount$ = worldService.getPeopleCount().pipe();
-    this.currentDate$ = worldService.getCurrentDate().pipe();
+    this.allEverCount$ = peopleService.getAllEverCount().pipe(take(1));
+    this.aliveCount$ = peopleService.getAliveCount().pipe(take(1));
+    this.deathCount$ = peopleService.getDeathCount().pipe(take(1));
+    this.mateCount$ = peopleService.getMateCount().pipe(take(1));
+    this.worldPeopleCount$ = worldService.getPeopleCount().pipe(take(1));
+    this.currentDate$ = worldService.getCurrentDate().pipe(take(1));
   }
 
   ngOnInit(): void {
-    this.currentDate$.subscribe(x => {
-      const request = new AgeRangeRequest();
-      request.currentDate = x;
-      request.minAge = 0;
-      request.maxAge = 18;
+    this.currentDate$.pipe(take(1)).subscribe(x => {
+      console.log(x);
+      const ageRangeRequest = new AgeRangeRequest();
+      ageRangeRequest.currentDate = x;
+      ageRangeRequest.minAge = 0;
+      ageRangeRequest.maxAge = 20;
 
-      this.ZeroToTwentyCount$ = this.peopleService.getAgeRangeCount(request).pipe();
+      this.ZeroToTwentyCount$ = this.peopleService.getAgeRangeCount(ageRangeRequest).pipe(take(1));
     });
+  }
+
+  ngOnDestroy(): void {
 
   }
 
   startPolling(): void {
     console.log('Iteration');
-    this.allEverCount$ = this.peopleService.getAllEverCount().pipe();
-    this.aliveCount$ = this.peopleService.getAliveCount().pipe();
-    this.deathCount$ = this.peopleService.getDeathCount().pipe();
-    this.mateCount$ = this.peopleService.getMateCount().pipe();
-    this.worldPeopleCount$ = this.worldService.getPeopleCount().pipe();
-    this.currentDate$ = this.worldService.getCurrentDate().pipe();
+    this.allEverCount$ = this.peopleService.getAllEverCount().pipe(take(1));
+    this.aliveCount$ = this.peopleService.getAliveCount().pipe(take(1));
+    this.deathCount$ = this.peopleService.getDeathCount().pipe(take(1));
+    this.mateCount$ = this.peopleService.getMateCount().pipe(take(1));
+    this.worldPeopleCount$ = this.worldService.getPeopleCount().pipe(take(1));
+    this.currentDate$ = this.worldService.getCurrentDate().pipe(take(1));
+
+    this.currentDate$.pipe(take(1)).subscribe(x => {
+      console.log(x);
+      const ageRangeRequest = new AgeRangeRequest();
+      ageRangeRequest.currentDate = x;
+      ageRangeRequest.minAge = 0;
+      ageRangeRequest.maxAge = 20;
+
+      this.ZeroToTwentyCount$ = this.peopleService.getAgeRangeCount(ageRangeRequest).pipe(take(1));
+    });
+
     if (this.allowPoling) {
       setTimeout(() => { this.startPolling(); }, 5000);
     }
