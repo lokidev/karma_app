@@ -13,6 +13,8 @@ import { ReadMeModule } from './components/read-me/read-me.module';
 import { TerminalCommandModule } from './components/read-me/terminal-command/terminal-command.module';
 import { MyStoreModule } from './components/store/store.module';
 import { KarmaComponent } from './components/karma/karma.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -32,9 +34,10 @@ import { KarmaComponent } from './components/karma/karma.component';
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
-    })
+    }),
+    NgxChartsModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

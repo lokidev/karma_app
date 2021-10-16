@@ -36,3 +36,6 @@
   <div class="form-label text-secondary">All people in world</div>
   <div class="pl-2 form-label text-white">{{ worldPeopleCount$ | async }}</div>
 </div>
+
+<ngx-charts-pie-grid class="chart" [scheme]="colorScheme" [results]="data" (select)="onSelect($event)">
+</ngx-charts-pie-grid>

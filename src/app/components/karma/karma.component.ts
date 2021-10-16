@@ -3,13 +3,41 @@ import { PeopleService } from 'src/app/services/people.service';
 import { Observable, Subject } from 'rxjs';
 import { WorldService } from 'src/app/services/world.service';
 
-
 @Component({
   selector: 'app-karma',
   templateUrl: './karma.component.html',
   styleUrls: ['./karma.component.scss']
 })
 export class KarmaComponent implements OnInit {
+
+  data = [
+    {
+      "name": "People Alive",
+      "value": 156
+    },
+    {
+      "name": "People Dead",
+      "value": 89
+    },
+    {
+      "name": "People with mates",
+      "value": 74
+    },
+    {
+      "name": "All People",
+      "value": 245
+    }
+  ];
+
+  view: number[] = [500, 400];
+
+  // options
+  showLegend: boolean = true;
+  showLabels: boolean = true;
+
+  colorScheme = {
+    domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
+  };
 
   allowPoling: boolean = true;
   allEverCount$: Observable<number>;
@@ -61,6 +89,10 @@ export class KarmaComponent implements OnInit {
       return x;
     });
     return [];
+  }
+
+  onSelect(event: any) {
+    console.log(event);
   }
 
 }
