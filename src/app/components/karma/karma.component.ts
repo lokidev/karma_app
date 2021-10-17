@@ -15,7 +15,7 @@ export class KarmaComponent implements OnInit, OnDestroy {
   data1$ = new Subject<any>();
   data1 = [
     {
-      "name": "People 0-20",
+      "name": "People 00-20",
       "value": 0
     },
     {
@@ -52,15 +52,11 @@ export class KarmaComponent implements OnInit, OnDestroy {
   data2 = [
     {
       "name": "People Alive",
-      "value": 156
-    },
-    {
-      "name": "People Dead",
-      "value": 89
+      "value": 0
     },
     {
       "name": "People with mates",
-      "value": 74
+      "value": 0
     }
   ];
 
@@ -108,7 +104,6 @@ export class KarmaComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.data1$.next(this.data1);
     this.currentDate$.pipe(take(1)).subscribe(x => {
       const ageRangeRequest1 = new AgeRangeRequest();
       ageRangeRequest1.currentDate = x;
@@ -165,7 +160,6 @@ export class KarmaComponent implements OnInit, OnDestroy {
   }
 
   startPolling(): void {
-    console.log('Iteration');
     this.allEverCount$ = this.peopleService.getAllEverCount().pipe(take(1));
 
     this.aliveCount$ = this.peopleService.getAliveCount().pipe(take(1));
@@ -176,15 +170,10 @@ export class KarmaComponent implements OnInit, OnDestroy {
     });
 
     this.deathCount$ = this.peopleService.getDeathCount().pipe(take(1));
-    this.deathCount$.subscribe(x => {
-      this.data2[1].value = x;
-      const newData = JSON.parse(JSON.stringify(this.data2));
-      this.data2$.next(newData);
-    });
 
     this.mateCount$ = this.peopleService.getMateCount().pipe(take(1));
     this.mateCount$.subscribe(x => {
-      this.data2[2].value = x;
+      this.data2[1].value = x;
       const newData = JSON.parse(JSON.stringify(this.data2));
       this.data2$.next(newData);
     });

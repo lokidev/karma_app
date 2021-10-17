@@ -12,68 +12,18 @@
     Seed World
   </div>
 </div>
+
 <div class="d-flex flex-row">
   <div class="form-label text-secondary">Current world time</div>
   <div class="pl-2 form-label text-white">{{ currentDate$ | async }}</div>
 </div>
-<div class="d-flex flex-row">
-  <div class="form-label text-secondary">All people who ever existed</div>
-  <div class="pl-2 form-label text-white">{{ allEverCount$ | async }}</div>
-</div>
-<div class="d-flex flex-row">
-  <div class="form-label text-secondary">All alive people</div>
-  <div class="pl-2 form-label text-white">{{ aliveCount$ | async }}</div>
-</div>
-<div class="d-flex flex-row">
-  <div class="form-label text-secondary">All dead people</div>
-  <div class="pl-2 form-label text-white">{{ deathCount$ | async }}</div>
-</div>
-<div class="d-flex flex-row">
-  <div class="form-label text-secondary">All people with mates</div>
-  <div class="pl-2 form-label text-white">{{ mateCount$ | async }}</div>
-</div>
-<div class="d-flex flex-row">
-  <div class="form-label text-secondary">People 00-20</div>
-  <div class="pl-2 form-label text-white">{{ ZeroToTwentyCount$ | async }}</div>
-</div>
-<div class="d-flex flex-row">
-  <div class="form-label text-secondary">People 20-30</div>
-  <div class="pl-2 form-label text-white">{{ TwentyToThirtyCount$ | async }}</div>
-</div>
-<div class="d-flex flex-row">
-  <div class="form-label text-secondary">People 30-40</div>
-  <div class="pl-2 form-label text-white">{{ ThirtyToFortyCount$ | async }}</div>
-</div>
-<div class="d-flex flex-row">
-  <div class="form-label text-secondary">People 40-50</div>
-  <div class="pl-2 form-label text-white">{{ FortyToFiftyCount$ | async }}</div>
-</div>
-<div class="d-flex flex-row">
-  <div class="form-label text-secondary">People 50-60</div>
-  <div class="pl-2 form-label text-white">{{ FiftyToSixtyCount$ | async }}</div>
-</div>
-<div class="d-flex flex-row">
-  <div class="form-label text-secondary">People 60-70</div>
-  <div class="pl-2 form-label text-white">{{ SixtyToSeventyCount$ | async }}</div>
-</div>
-<div class="d-flex flex-row">
-  <div class="form-label text-secondary">People 70-80</div>
-  <div class="pl-2 form-label text-white">{{ SeventyToEightyCount$ | async }}</div>
-</div>
-<div class="d-flex flex-row">
-  <div class="form-label text-secondary">People 80-90</div>
-  <div class="pl-2 form-label text-white">{{ EightyToNinetyCount$ | async }}</div>
-</div>
-<div class="d-flex flex-row">
-  <div class="form-label text-secondary">All people in world</div>
-  <div class="pl-2 form-label text-white">{{ worldPeopleCount$ | async }}</div>
-</div>
+
 
 <div class="container-fluid">
   <div class="d-flex flex-row charts">
     <div class="col-5">
-      <ngx-charts-gauge class="chart2" [scheme]="colorScheme" [results]="data1$ | async" [legend]="legend"
-        (select)="onSelect($event)" (activate)="onActivate($event)" (deactivate)="onDeactivate($event)">
+      <ngx-charts-gauge [scheme]="colorScheme" [results]="data1$ | async" [legend]="legend" (select)="onSelect($event)"
+        (activate)="onActivate($event)" (deactivate)="onDeactivate($event)">
       </ngx-charts-gauge>
     </div>
     <div class="col-7">
