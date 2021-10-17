@@ -69,5 +69,17 @@
   <div class="pl-2 form-label text-white">{{ worldPeopleCount$ | async }}</div>
 </div>
 
-<ngx-charts-pie-grid class="chart" [scheme]="colorScheme" [results]="data" (select)="onSelect($event)">
-</ngx-charts-pie-grid>
+<div class="container-fluid">
+  <div class="d-flex flex-row charts">
+    <div class="col-5">
+      <ngx-charts-gauge class="chart2" [scheme]="colorScheme" [results]="data1$ | async" [legend]="legend"
+        (select)="onSelect($event)" (activate)="onActivate($event)" (deactivate)="onDeactivate($event)">
+      </ngx-charts-gauge>
+    </div>
+    <div class="col-7">
+      <ngx-charts-advanced-pie-chart [scheme]="colorScheme" [results]="data2$ | async" [gradient]="gradient"
+        (select)="onSelect($event)" (activate)="onActivate($event)" (deactivate)="onDeactivate($event)">
+      </ngx-charts-advanced-pie-chart>
+    </div>
+  </div>
+</div>
