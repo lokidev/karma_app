@@ -51,11 +51,23 @@ export class KarmaComponent implements OnInit, OnDestroy {
   data2$ = new Subject<any>();
   data2 = [
     {
-      "name": "People Alive",
+      "name": "People with mates",
       "value": 0
     },
     {
-      "name": "People with mates",
+      "name": "People without mates",
+      "value": 0
+    }
+  ];
+
+  data3$ = new Subject<any>();
+  data3 = [
+    {
+      "name": "To young to mate",
+      "value": 0
+    },
+    {
+      "name": "Old enough for mate",
       "value": 0
     }
   ];
@@ -81,6 +93,7 @@ export class KarmaComponent implements OnInit, OnDestroy {
   aliveCount$: Observable<number>;
   deathCount$: Observable<number>;
   mateCount$: Observable<number>;
+  withoutMateCount$: Observable<number>;
   ZeroToTwentyCount$: Observable<number> = new Observable<number>();
   TwentyToThirtyCount$: Observable<number> = new Observable<number>();
   ThirtyToFortyCount$: Observable<number> = new Observable<number>();
@@ -99,6 +112,7 @@ export class KarmaComponent implements OnInit, OnDestroy {
     this.aliveCount$ = peopleService.getAliveCount().pipe(take(1));
     this.deathCount$ = peopleService.getDeathCount().pipe(take(1));
     this.mateCount$ = peopleService.getMateCount().pipe(take(1));
+    this.withoutMateCount$ = peopleService.getMateCount().pipe(take(1));
     this.worldPeopleCount$ = worldService.getPeopleCount().pipe(take(1));
     this.currentDate$ = worldService.getCurrentDate().pipe(take(1));
   }
@@ -162,8 +176,8 @@ export class KarmaComponent implements OnInit, OnDestroy {
   startPolling(): void {
     this.allEverCount$ = this.peopleService.getAllEverCount().pipe(take(1));
 
-    this.aliveCount$ = this.peopleService.getAliveCount().pipe(take(1));
-    this.aliveCount$.subscribe(x => {
+    this.mateCount$ = this.peopleService.getMateCount().pipe(take(1));
+    this.mateCount$.subscribe(x => {
       this.data2[0].value = x;
       const newData = JSON.parse(JSON.stringify(this.data2));
       this.data2$.next(newData);
@@ -171,8 +185,8 @@ export class KarmaComponent implements OnInit, OnDestroy {
 
     this.deathCount$ = this.peopleService.getDeathCount().pipe(take(1));
 
-    this.mateCount$ = this.peopleService.getMateCount().pipe(take(1));
-    this.mateCount$.subscribe(x => {
+    this.withoutMateCount$ = this.peopleService.getWithoutMateCount().pipe(take(1));
+    this.withoutMateCount$.subscribe(x => {
       this.data2[1].value = x;
       const newData = JSON.parse(JSON.stringify(this.data2));
       this.data2$.next(newData);
