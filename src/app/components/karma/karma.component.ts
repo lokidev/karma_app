@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PeopleService } from 'src/app/services/people.service';
-import { Observable, Subject } from 'rxjs';
-import { take, takeUntil } from 'rxjs/operators';
+import { Observable, Subject, combineLatest } from 'rxjs';
+import { map, take, takeUntil } from 'rxjs/operators';
 import { WorldService } from 'src/app/services/world.service';
 import { AgeRangeRequest } from 'src/app/Models/Request/age-range-request';
 
@@ -205,6 +205,9 @@ export class KarmaComponent implements OnInit, OnDestroy {
         this.data1[0].value = x;
         const newData = JSON.parse(JSON.stringify(this.data1));
         this.data1$.next(newData);
+        this.data3[0].value = x;
+        const newData3 = JSON.parse(JSON.stringify(this.data3));
+        this.data3$.next(newData3);
       });
 
       const ageRangeRequest2 = new AgeRangeRequest();
@@ -282,6 +285,24 @@ export class KarmaComponent implements OnInit, OnDestroy {
         this.data1[7].value = x;
         const newData = JSON.parse(JSON.stringify(this.data1));
         this.data1$.next(newData);
+      });
+
+      const overTwenty$ = combineLatest([
+        this.TwentyToThirtyCount$,
+        this.ThirtyToFortyCount$,
+        this.FortyToFiftyCount$,
+        this.FiftyToSixtyCount$,
+        this.SixtyToSeventyCount$,
+        this.SeventyToEightyCount$,
+        this.EightyToNinetyCount$
+      ]).pipe(
+        map(([twenty, thirty, forty, fifty, sixty, seventy, eighty]) => twenty + thirty + forty + fifty + sixty + seventy + eighty),
+      );
+
+      overTwenty$.subscribe(x => {
+        this.data3[1].value = x;
+        const newData3 = JSON.parse(JSON.stringify(this.data3));
+        this.data3$.next(newData3);
       });
     });
 
