@@ -15,11 +15,17 @@ import { MyStoreModule } from './components/store/store.module';
 import { KarmaComponent } from './components/karma/karma.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AgeRangeComponent } from './components/karma/age-range/age-range.component';
+import { MatingComponent } from './components/karma/mating/mating.component';
+import { PopulationComponent } from './components/karma/population/population.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    KarmaComponent
+    KarmaComponent,
+    AgeRangeComponent,
+    PopulationComponent,
+    MatingComponent
   ],
   imports: [
     BrowserModule,
