@@ -79,18 +79,105 @@ export class KarmaComponent implements OnInit, OnDestroy {
     {
       "name": "Born",
       "series": [
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
         { "name": "", "value": 0 }
       ]
     },
     {
       "name": "Died",
       "series": [
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
         { "name": "", "value": 0 }
       ]
     },
     {
       "name": "Growth",
       "series": [
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
+        { "name": "", "value": 0 },
         { "name": "", "value": 0 }
       ]
     }
@@ -156,55 +243,6 @@ export class KarmaComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.startPolling();
-    this.currentDate$.pipe(take(1)).subscribe(x => {
-      const ageRangeRequest1 = new AgeRangeRequest();
-      ageRangeRequest1.currentDate = x;
-      ageRangeRequest1.minAge = 0;
-      ageRangeRequest1.maxAge = 20;
-      this.zeroToTwentyCount$ = this.peopleService.getAgeRangeCount(ageRangeRequest1).pipe(take(1));
-
-      const ageRangeRequest2 = new AgeRangeRequest();
-      ageRangeRequest2.currentDate = x;
-      ageRangeRequest2.minAge = 20;
-      ageRangeRequest2.maxAge = 30;
-      this.twentyToThirtyCount$ = this.peopleService.getAgeRangeCount(ageRangeRequest2).pipe(take(1));
-
-      const ageRangeRequest3 = new AgeRangeRequest();
-      ageRangeRequest3.currentDate = x;
-      ageRangeRequest3.minAge = 30;
-      ageRangeRequest3.maxAge = 40;
-      this.thirtyToFortyCount$ = this.peopleService.getAgeRangeCount(ageRangeRequest3).pipe(take(1));
-
-      const ageRangeRequest4 = new AgeRangeRequest();
-      ageRangeRequest4.currentDate = x;
-      ageRangeRequest4.minAge = 40;
-      ageRangeRequest4.maxAge = 50;
-      this.fortyToFiftyCount$ = this.peopleService.getAgeRangeCount(ageRangeRequest4).pipe(take(1));
-
-      const ageRangeRequest5 = new AgeRangeRequest();
-      ageRangeRequest5.currentDate = x;
-      ageRangeRequest5.minAge = 50;
-      ageRangeRequest5.maxAge = 60;
-      this.fiftyToSixtyCount$ = this.peopleService.getAgeRangeCount(ageRangeRequest5).pipe(take(1));
-
-      const ageRangeRequest6 = new AgeRangeRequest();
-      ageRangeRequest6.currentDate = x;
-      ageRangeRequest6.minAge = 60;
-      ageRangeRequest6.maxAge = 70;
-      this.sixtyToSeventyCount$ = this.peopleService.getAgeRangeCount(ageRangeRequest6).pipe(take(1));
-
-      const ageRangeRequest7 = new AgeRangeRequest();
-      ageRangeRequest7.currentDate = x;
-      ageRangeRequest7.minAge = 70;
-      ageRangeRequest7.maxAge = 80;
-      this.seventyToEightyCount$ = this.peopleService.getAgeRangeCount(ageRangeRequest7).pipe(take(1));
-
-      const ageRangeRequest8 = new AgeRangeRequest();
-      ageRangeRequest8.currentDate = x;
-      ageRangeRequest8.minAge = 80;
-      ageRangeRequest8.maxAge = 90;
-      this.eightyToNinetyCount$ = this.peopleService.getAgeRangeCount(ageRangeRequest8).pipe(take(1));
-    });
   }
 
   ngOnDestroy(): void {
@@ -325,18 +363,6 @@ export class KarmaComponent implements OnInit, OnDestroy {
         this.data1$.next(newData);
       });
 
-      // const overTwenty$ = combineLatest([
-      //   this.twentyToThirtyCount$,
-      //   this.thirtyToFortyCount$,
-      //   this.fortyToFiftyCount$,
-      //   this.fiftyToSixtyCount$,
-      //   this.sixtyToSeventyCount$,
-      //   this.seventyToEightyCount$,
-      //   this.eightyToNinetyCount$
-      // ]).pipe(
-      //   map(([twenty, thirty, forty, fifty, sixty, seventy, eighty]) => twenty + thirty + forty + fifty + sixty + seventy + eighty),
-      // );
-
       const ageCounts$ = combineLatest([
         this.zeroToTwentyCount$,
         this.twentyToThirtyCount$,
@@ -356,32 +382,18 @@ export class KarmaComponent implements OnInit, OnDestroy {
         this.data3$.next(newData3);
       });
 
-      if (this.data4[0].series.filter(f => f.name === date.toString()).length === 0) {
+      if (this.data4[0].series.filter(f => f.name === new Date(date.toString()).toDateString()).length === 0) {
         const bornRequest = new LogsRequest();
         bornRequest.currDateTime = date;
         bornRequest.objectType = "Person";
         bornRequest.messageType = "Concieved";
         this.bornThisYear$ = this.karmaService.getLogsCount(bornRequest).pipe(take(1));
-        // this.bornThisYear$.subscribe(n => {
-
-        //   this.data4[0].series = this.data4[0].series.slice(1, 30);
-        //   this.data4[0].series.push({ name: date.toString(), value: n });
-        //   const newData = JSON.parse(JSON.stringify(this.data4));
-        //   this.data4$.next(newData);
-        // });
 
         const diedRequest = new LogsRequest();
         diedRequest.currDateTime = date;
         diedRequest.objectType = "Person";
         diedRequest.messageType = "Died";
         this.diedThisYear$ = this.karmaService.getLogsCount(diedRequest).pipe(take(1));
-        // this.diedThisYear$.subscribe(n => {
-
-        //   this.data4[1].series = this.data4[1].series.slice(1, 30);
-        //   this.data4[1].series.push({ name: date.toString(), value: n });
-        //   const newData = JSON.parse(JSON.stringify(this.data4));
-        //   this.data4$.next(newData);
-        // });
 
         const birthsDeaths$ = combineLatest([
           this.bornThisYear$,
@@ -391,16 +403,14 @@ export class KarmaComponent implements OnInit, OnDestroy {
         );
 
         birthsDeaths$.subscribe(n => {
-          console.log(n[0]);
-          console.log(n[1]);
           this.data4[0].series = this.data4[0].series.slice(1, 30);
           this.data4[1].series = this.data4[1].series.slice(1, 30);
           this.data4[2].series = this.data4[2].series.slice(1, 30);
-          this.data4[0].series.push({ name: date.toString(), value: n[0] });
-          this.data4[1].series.push({ name: date.toString(), value: n[1] });
-          this.data4[2].series.push({ name: date.toString(), value: n[0] - n[1] });
-          const newData = JSON.parse(JSON.stringify(this.data4));
-          this.data4$.next(newData);
+          this.data4[0].series.push({ name: new Date(date.toString()).toDateString(), value: n[0] });
+          this.data4[1].series.push({ name: new Date(date.toString()).toDateString(), value: n[1] });
+          this.data4[2].series.push({ name: new Date(date.toString()).toDateString(), value: n[0] - n[1] });
+          const newData4 = JSON.parse(JSON.stringify(this.data4));
+          this.data4$.next(newData4);
         });
       }
     });
