@@ -1,7 +1,8 @@
-<div class="d-flex">
-  <ngx-charts-line-chart [view]="[1800, 400]" [scheme]="colorScheme" [legend]="legend" [showXAxisLabel]="showXAxisLabel"
-    [showYAxisLabel]="showYAxisLabel" [xAxis]="xAxis" [yAxis]="yAxis" [xAxisLabel]="xAxisLabel"
-    [yAxisLabel]="yAxisLabel" [timeline]="timeline" [results]="data4$ | async" (select)="onSelect($event)"
-    (activate)="onActivate($event)" (deactivate)="onDeactivate($event)">
+<div #populationContainerRef class="d-flex h-100">
+  <ngx-charts-line-chart [view]="[populationContainerRef.offsetWidth, populationContainerRef.offsetHeight]"
+    [scheme]="colorScheme" [legend]="legend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+    [xAxis]="xAxis" [yAxis]="yAxis" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [timeline]="timeline"
+    [results]="data4$ | async" (select)="onSelect($event)" (activate)="onActivate($event)"
+    (deactivate)="onDeactivate($event)">
   </ngx-charts-line-chart>
 </div>

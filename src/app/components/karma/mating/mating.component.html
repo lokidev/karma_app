@@ -1,7 +1,7 @@
-<div class="d-flex">
-  <ngx-charts-bar-horizontal [view]="[1000, 400]" [scheme]="colorScheme" [results]="data2$ | async"
-    [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend"
-    [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
+<div #matingContainerRef class="d-flex h-100">
+  <ngx-charts-bar-horizontal [view]="[matingContainerRef.offsetWidth, matingContainerRef.offsetHeight]"
+    [scheme]="colorScheme" [results]="data2$ | async" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis"
+    [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
     [yAxisLabel]="yAxisLabel" (select)="onSelect($event)" (activate)="onActivate($event)"
     (deactivate)="onDeactivate($event)">
   </ngx-charts-bar-horizontal>

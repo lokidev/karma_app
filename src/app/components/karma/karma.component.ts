@@ -5,6 +5,9 @@ import { map, take } from 'rxjs/operators';
 import { WorldService } from 'src/app/services/world.service';
 import { AgeRangeRequest } from 'src/app/Models/Request/age-range-request';
 import { KarmaService } from 'src/app/services/karma.service';
+import { WorldTime } from '../store/models/worldTime.model';
+import * as KarmaPageActions from '../store/actions/karma.actions';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-karma',
@@ -19,7 +22,8 @@ export class KarmaComponent implements OnInit, OnDestroy {
   currentDate$: Observable<Date>;
 
   constructor(private peopleService: PeopleService,
-    private worldService: WorldService) {
+    private worldService: WorldService,
+    private store: Store<any>) {
     this.currentDate$ = worldService.getCurrentDate().pipe(take(1));
   }
 
@@ -35,6 +39,7 @@ export class KarmaComponent implements OnInit, OnDestroy {
     this.currentDate$ = this.worldService.getCurrentDate().pipe(take(1));
 
     this.currentDate$.pipe(take(1)).subscribe(date => {
+      this.store.dispatch(KarmaPageActions.setWorldTime({ worldTime: { currDate: date } }));
       this.formattedDate = new Date(date).toDateString();
     });
 

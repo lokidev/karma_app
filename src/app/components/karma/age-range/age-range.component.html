@@ -1,5 +1,6 @@
-<div class="d-flex">
-  <ngx-charts-gauge [view]="[500, 400]" [scheme]="colorScheme" [results]="data1$ | async" [legend]="legend"
-    (select)="onSelect($event)" (activate)="onActivate($event)" (deactivate)="onDeactivate($event)">
+<div #ageRangeContainerRef class="d-flex h-100">
+  <ngx-charts-gauge [view]="[ageRangeContainerRef.offsetWidth, ageRangeContainerRef.offsetHeight]"
+    [scheme]="colorScheme" [results]="data1$ | async" [legend]="legend" (select)="onSelect($event)"
+    (activate)="onActivate($event)" (deactivate)="onDeactivate($event)">
   </ngx-charts-gauge>
 </div>
