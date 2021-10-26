@@ -16,19 +16,31 @@ export class MatingComponent implements OnInit, OnDestroy {
   data2 = [
     {
       "name": "With mates",
-      "value": 0
+      "value": 0,
+      "extras": {
+        "key": 1
+      }
     },
     {
       "name": "Without mates",
-      "value": 0
+      "value": 0,
+      "extras": {
+        "key": 2
+      }
     },
     {
       "name": "To young",
-      "value": 0
+      "value": 0,
+      "extras": {
+        "key": 3
+      }
     },
     {
       "name": "Old enough",
-      "value": 0
+      "value": 0,
+      "extras": {
+        "key": 4
+      }
     }
   ];
 
@@ -48,8 +60,8 @@ export class MatingComponent implements OnInit, OnDestroy {
     domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
   };
 
-  mateCount$: Observable<number>;
-  withoutMateCount$: Observable<number>;
+  mateCount$: Observable<number> = new Observable<number>();
+  withoutMateCount$: Observable<number> = new Observable<number>();
   zeroToTwentyCount$: Observable<number> = new Observable<number>();
   twentyToThirtyCount$: Observable<number> = new Observable<number>();
   thirtyToFortyCount$: Observable<number> = new Observable<number>();
@@ -65,37 +77,27 @@ export class MatingComponent implements OnInit, OnDestroy {
   constructor(
     private peopleService: PeopleService,
     private store: Store<any>) {
-    this.mateCount$ = peopleService.getMateCount().pipe(take(1));
-    this.withoutMateCount$ = peopleService.getMateCount().pipe(take(1));
+    //this.mateCount$ = peopleService.getMateCount().pipe(take(1));
+    //this.withoutMateCount$ = peopleService.getMateCount().pipe(take(1));
     this.currentDate$ = this.store.select(state => state).pipe(takeUntil(this.componentDestroyed$));
   }
 
   ngOnInit(): void {
     this.currentDate$.pipe(takeUntil(this.componentDestroyed$)).subscribe(state => {
       this.mateCount$ = this.peopleService.getMateCount().pipe(take(1));
-      this.mateCount$.subscribe(x => {
-        this.data2[0].value = x;
-        const newData = JSON.parse(JSON.stringify(this.data2));
-        this.data2$.next(newData);
-      });
-
       this.withoutMateCount$ = this.peopleService.getWithoutMateCount().pipe(take(1));
-      this.withoutMateCount$.subscribe(x => {
-        this.data2[1].value = x;
-        const newData = JSON.parse(JSON.stringify(this.data2));
-        this.data2$.next(newData);
-      });
 
       this.formattedDate = new Date(state.karma.currDate).toDateString();
+
       const ageRangeRequest1 = new AgeRangeRequest();
       ageRangeRequest1.currentDate = state.karma.currDate;
       ageRangeRequest1.minAge = 0;
-      ageRangeRequest1.maxAge = 20;
+      ageRangeRequest1.maxAge = 18;
       this.zeroToTwentyCount$ = this.peopleService.getAgeRangeCount(ageRangeRequest1).pipe(take(1));
 
       const ageRangeRequest2 = new AgeRangeRequest();
       ageRangeRequest2.currentDate = state.karma.currDate;
-      ageRangeRequest2.minAge = 21;
+      ageRangeRequest2.minAge = 19;
       ageRangeRequest2.maxAge = 30;
       this.twentyToThirtyCount$ = this.peopleService.getAgeRangeCount(ageRangeRequest2).pipe(take(1));
 
@@ -136,6 +138,8 @@ export class MatingComponent implements OnInit, OnDestroy {
       this.eightyToNinetyCount$ = this.peopleService.getAgeRangeCount(ageRangeRequest8).pipe(take(1));
 
       const ageCounts$ = combineLatest([
+        this.mateCount$,
+        this.withoutMateCount$,
         this.zeroToTwentyCount$,
         this.twentyToThirtyCount$,
         this.thirtyToFortyCount$,
@@ -145,12 +149,14 @@ export class MatingComponent implements OnInit, OnDestroy {
         this.seventyToEightyCount$,
         this.eightyToNinetyCount$
       ]).pipe(
-        map(([zero, twenty, thirty, forty, fifty, sixty, seventy, eighty]) => [zero, twenty, thirty, forty, fifty, sixty, seventy, eighty])
+        map(([mates, withoutMates, zero, twenty, thirty, forty, fifty, sixty, seventy, eighty]) => [mates, withoutMates, zero, twenty, thirty, forty, fifty, sixty, seventy, eighty])
       );
 
       ageCounts$.subscribe(x => {
-        this.data2[2].value = x[0];
-        this.data2[3].value = x[1] + x[2] + x[3] + x[4] + x[5] + x[6] + x[7];
+        this.data2[0].value = x[0];
+        this.data2[1].value = x[1];
+        this.data2[2].value = x[2];
+        this.data2[3].value = x[3] + x[4] + x[5] + x[6] + x[7] + x[8] + x[9];
         const newData2 = JSON.parse(JSON.stringify(this.data2));
         this.data2$.next(newData2);
       });

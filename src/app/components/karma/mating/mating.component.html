@@ -1,4 +1,4 @@
-<div #matingContainerRef class="d-flex h-100">
+<div #matingContainerRef *ngIf="data2$ | async" class="d-flex h-100">
   <ngx-charts-bar-horizontal [view]="[matingContainerRef.offsetWidth, matingContainerRef.offsetHeight]"
     [scheme]="colorScheme" [results]="data2$ | async" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis"
     [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"

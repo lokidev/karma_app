@@ -17,11 +17,11 @@ export class AgeRangeComponent implements OnInit, OnDestroy {
   data1$ = new Subject<any>();
   data1 = [
     {
-      "name": "00-20",
+      "name": "00-18",
       "value": 0
     },
     {
-      "name": "21-30",
+      "name": "19-30",
       "value": 0
     },
     {
@@ -56,7 +56,6 @@ export class AgeRangeComponent implements OnInit, OnDestroy {
     domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
   };
 
-  allowPoling: boolean = true;
   zeroToTwentyCount$: Observable<number> = new Observable<number>();
   twentyToThirtyCount$: Observable<number> = new Observable<number>();
   thirtyToFortyCount$: Observable<number> = new Observable<number>();
@@ -78,12 +77,12 @@ export class AgeRangeComponent implements OnInit, OnDestroy {
       const ageRangeRequest1 = new AgeRangeRequest();
       ageRangeRequest1.currentDate = state.karma.currDate;
       ageRangeRequest1.minAge = 0;
-      ageRangeRequest1.maxAge = 20;
+      ageRangeRequest1.maxAge = 18;
       this.zeroToTwentyCount$ = this.peopleService.getAgeRangeCount(ageRangeRequest1).pipe(take(1));
 
       const ageRangeRequest2 = new AgeRangeRequest();
       ageRangeRequest2.currentDate = state.karma.currDate;
-      ageRangeRequest2.minAge = 21;
+      ageRangeRequest2.minAge = 19;
       ageRangeRequest2.maxAge = 30;
       this.twentyToThirtyCount$ = this.peopleService.getAgeRangeCount(ageRangeRequest2).pipe(take(1));
 

@@ -1,4 +1,4 @@
-<div #ageRangeContainerRef class="d-flex h-100">
+<div #ageRangeContainerRef *ngIf="data1$ | async" class="d-flex h-100">
   <ngx-charts-gauge [view]="[ageRangeContainerRef.offsetWidth, ageRangeContainerRef.offsetHeight]"
     [scheme]="colorScheme" [results]="data1$ | async" [legend]="legend" (select)="onSelect($event)"
     (activate)="onActivate($event)" (deactivate)="onDeactivate($event)">

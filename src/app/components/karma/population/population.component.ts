@@ -18,110 +18,23 @@ export class PopulationComponent implements OnInit, OnDestroy {
   diedThisYear$: Observable<number> = new Observable<number>();
 
   data4$ = new Subject<any>();
-  data4 = [
+  data4: { name: string, series: { name: string, value: number }[] }[] = [
     {
       "name": "Born",
       "series": [
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 }
+
       ]
     },
     {
       "name": "Died",
       "series": [
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 }
+
       ]
     },
     {
       "name": "Growth",
       "series": [
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 },
-        { "name": "", "value": 0 }
+
       ]
     }
   ];
@@ -155,6 +68,7 @@ export class PopulationComponent implements OnInit, OnDestroy {
       this.formattedDate = new Date(state.karma.currDate).toDateString();
 
       if (this.data4[0].series.filter(f => f.name === new Date(state.karma.currDate.toString()).toDateString()).length === 0) {
+
         const bornRequest = new LogsRequest();
         bornRequest.currDateTime = state.karma.currDate;
         bornRequest.objectType = "Person";
@@ -175,9 +89,18 @@ export class PopulationComponent implements OnInit, OnDestroy {
         );
 
         birthsDeaths$.subscribe(n => {
-          this.data4[0].series = this.data4[0].series.slice(1, 30);
-          this.data4[1].series = this.data4[1].series.slice(1, 30);
-          this.data4[2].series = this.data4[2].series.slice(1, 30);
+          if (this.data4[0].series.length === 30) {
+            this.data4[0].series = this.data4[0].series.slice(1, 30);
+          }
+
+          if (this.data4[1].series.length === 30) {
+            this.data4[1].series = this.data4[1].series.slice(1, 30);
+          }
+
+          if (this.data4[2].series.length === 30) {
+            this.data4[2].series = this.data4[2].series.slice(1, 30);
+          }
+
           this.data4[0].series.push({ name: new Date(state.karma.currDate.toString()).toDateString(), value: n[0] });
           this.data4[1].series.push({ name: new Date(state.karma.currDate.toString()).toDateString(), value: n[1] });
           this.data4[2].series.push({ name: new Date(state.karma.currDate.toString()).toDateString(), value: n[0] - n[1] });
