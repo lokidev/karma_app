@@ -85,7 +85,8 @@ export class MatingComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.currentDate$.pipe(takeUntil(this.componentDestroyed$)).subscribe(state => {
       this.mateCount$ = this.peopleService.getMateCount().pipe(take(1));
-      this.withoutMateCount$ = this.peopleService.getWithoutMateCount().pipe(take(1));
+      console.log(state.karma.currDate);
+      this.withoutMateCount$ = this.peopleService.getWithoutMateCount(state.karma.currDate).pipe(take(1));
 
       this.formattedDate = new Date(state.karma.currDate).toDateString();
 

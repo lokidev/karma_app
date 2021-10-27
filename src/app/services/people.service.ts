@@ -35,8 +35,8 @@ export class PeopleService {
     return this.httpClient.get<number>('http://localhost:5052/api/People/mateCount');
   }
 
-  getWithoutMateCount(): Observable<number> {
-    return this.httpClient.get<number>('http://localhost:5052/api/People/withoutMateCount');
+  getWithoutMateCount(currentDate: string): Observable<number> {
+    return this.httpClient.post<number>('http://localhost:5052/api/People/withoutMateCount', { currDate: currentDate });
   }
 
   getAgeRangeCount(body: AgeRangeRequest): Observable<number> {
