@@ -44,7 +44,7 @@ export class KarmaComponent implements OnInit, OnDestroy {
     });
 
     if (this.allowPoling) {
-      setTimeout(() => { this.startPolling(); }, 5000);
+      setTimeout(() => { this.startPolling(); }, 12000);
     }
   }
 
