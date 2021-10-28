@@ -1,7 +1,7 @@
 # Stage 1
 # Create image based on the official Node 8 image from dockerhub
 
-FROM node:latest as node
+FROM node:lts as node
 
 # Create a directory where our app will be placed
 RUN mkdir -p /usr/src/app
